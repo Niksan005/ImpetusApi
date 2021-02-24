@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31005.135
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HttpPostReq", "HttpPostReq\HttpPostReq.csproj", "{FC5F94FF-1E10-4695-B6B7-2A26BE8358FF}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{FC5F94FF-1E10-4695-B6B7-2A26BE8358FF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FC5F94FF-1E10-4695-B6B7-2A26BE8358FF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FC5F94FF-1E10-4695-B6B7-2A26BE8358FF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FC5F94FF-1E10-4695-B6B7-2A26BE8358FF}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {27669031-3F9E-42E8-9191-6BA84FC7631F}
+	EndGlobalSection
+EndGlobal
