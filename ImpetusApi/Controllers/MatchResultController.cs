@@ -23,10 +23,13 @@ namespace ImpetusApi.Controllers
             var _match = _context.Matchs.Last();
             foreach (string player in players)
             {
+                var _user = GetUserByString(player);
                 _context.UserMatchRelations.Add(new UserMatchRelation
                 {
-                    ModelUser = GetUserByString(player),
-                    ModelMatch = _match
+                    ModelUser = _user,
+                    IdUser = _user.Id,
+                    ModelMatch = _match,
+                    IdMatch = _match.Id
                 });
                 var _rellation = _context.UserMatchRelations.Last();
                 _context.Users.FirstOrDefault(x => x.Equals(player)).MatchHistory.Add(_rellation);
