@@ -17,7 +17,7 @@ namespace ImpetusApi.Controllers
         { }
 
         [HttpPost("result")]
-        public void ChatUpdate(ICollection<string> players)
+        public void MatchResult(ICollection<string> players)
         {
             _context.Matchs.Add(new Match());
             var _match = _context.Matchs.Last();

@@ -1,27 +1,33 @@
 ﻿using System;
-using Zendid.Models;
+using System.Net.Http;
+using System.Text;
+using Newtonsoft.Json;
 
 namespace HttpPostReq
 {
     class Program
     {
+        private static readonly HttpClient client = new HttpClient();
 
-        static void Main(string[] args)
+        static async System.Threading.Tasks.Task Main(string[] args)
         {
-
-        }
-
-        private async void Login()
-        {
-            InputClass log = new InputClass { 
+            InputClass log = new InputClass
+            {
                 Username = "Nick",
                 Password = "n123123"
             };
+            var json = JsonConvert.SerializeObject(log);
+            var data = new StringContent(json, Encoding.UTF8, "application/json");
 
-            var res = await ApiClient.RequestServerPost<InputClass, string>
-                ("https://zendid.in.kutiika.net/account/login", log);
+            var url = "https://localhost:44378/weatherforecast";
+            using var client = new HttpClient();
 
-            Console.WriteLine(res);
+
+            var response = await client.PostAsync(url, data);
+
+            string result = response.Content.ReadAsStringAsync().Result;
+            Console.WriteLine(result);
         }
+
     }
 }

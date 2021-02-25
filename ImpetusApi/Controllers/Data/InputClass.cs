@@ -11,3 +11,4 @@ namespace ImpetusApi.Controllers.Data
         public string Password { get; set; }
     }
 }
+    

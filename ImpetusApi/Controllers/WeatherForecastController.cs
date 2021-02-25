@@ -23,7 +23,7 @@ namespace ImpetusApi.Controllers
             _logger = logger;
         }
 
-        [HttpGet]
+        [HttpPost("WeatherForecast")]
         public IEnumerable<WeatherForecast> Get()
         {
             var rng = new Random();
