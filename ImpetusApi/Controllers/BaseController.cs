@@ -24,7 +24,7 @@ namespace ImpetusApi.Controllers
         }
         protected AppUser GetUserByString(string name)
         {
-            AppUser user = _context.Users.FirstOrDefault(x => x.Username.Any(y => y.Equals(name)));
+            AppUser user = _context.Users.FirstOrDefault(x => x.Username.Equals(name));
             return user;
         }
     }

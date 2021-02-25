@@ -29,7 +29,7 @@ namespace ImpetusApi.Controllers
         }
 
         [HttpPost("register")]
-        public string Register(InputClass _user)
+        public async Task<string> Register(InputClass _user)
         {
             if (GetUserByString(_user.Username) != null) return "@UsernameTaken";
             _context.Users.Add(
@@ -40,7 +40,7 @@ namespace ImpetusApi.Controllers
                     Points = 100,
                     MatchHistory = null
                 });
-            _context.SaveChanges();
+            await _context.SaveChangesAsync();
             return "@SuccessfulRegister";
         }
 

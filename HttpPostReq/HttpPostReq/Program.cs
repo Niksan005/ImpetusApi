@@ -19,7 +19,7 @@ namespace HttpPostReq
             var json = JsonConvert.SerializeObject(log);
             var data = new StringContent(json, Encoding.UTF8, "application/json");
 
-            var url = "https://localhost:44378/weatherforecast";
+            var url = "https://localhost:44378/api/user/register";
             using var client = new HttpClient();
 
 
