@@ -27,5 +27,13 @@ namespace ImpetusApi.Controllers
             AppUser user = _context.Users.FirstOrDefault(x => x.Username.Equals(name));
             return user;
         }
+        protected List<string> GetHistoryByString(AppUser user)
+        {
+            List<string> MatchHistoryIDs = _context.UserMatchRelations
+                .Where(x => x.IdUser == user.Id)
+                .Select(x => x.IdMatch)
+                .Take(10).ToList();
+            return MatchHistoryIDs;
+        }
     }
 }

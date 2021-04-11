@@ -17,7 +17,7 @@ namespace ImpetusApi.Controllers
         { }
 
         [HttpPost("result")]
-        public void MatchResult(ICollection<string> players)
+        public async Task<bool> MatchResult(ICollection<string> players)
         {
             _context.Matchs.Add(new Match());
             var _match = _context.Matchs.Last();
@@ -32,7 +32,15 @@ namespace ImpetusApi.Controllers
                 _context.Users.FirstOrDefault(x => x.Equals(player)).MatchHistory.Add(_rellation);
                 _match.Players.Add(_rellation);
             }
-            _context.SaveChanges();
+            await _context.SaveChangesAsync();
+            return true;
+        }
+
+
+        [HttpPost("getmatch")]
+        public Match GetMatch(string _id)
+        {
+            return _context.Matchs.Where(x => x.Id.Equals(_id)).FirstOrDefault();
         }
     }
 }

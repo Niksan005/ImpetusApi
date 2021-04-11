@@ -20,18 +20,25 @@ namespace ImpetusApi.Controllers
 
 
         [HttpPost("login")]
-        public string Login(InputClass _user)
+        public BaseInput<bool> Login(InputClass _user)
         {
+            BaseInput<bool> _output = new BaseInput<bool>();
+
             AppUser _newuser = GetUserByString(_user.Username);
-            if (_newuser == null) return "@UserNotFound";
-            if (_newuser.Password == _user.Password) return "@SuccessfulLogin";
-            return "@WrongPassword";
+            if (_newuser == null) _output.Status = "@UserNotFound";
+            if (_newuser.Password == _user.Password) _output.Status = "@SuccessfulLogin";
+            _output.Status = "@WrongPassword";
+            _output.Output = true;
+
+            return _output;
         }
 
         [HttpPost("register")]
-        public async Task<string> Register(InputClass _user)
+        public async Task<BaseInput<bool>> Register(InputClass _user)
         {
-            if (GetUserByString(_user.Username) != null) return "@UsernameTaken";
+            BaseInput<bool> _output = new BaseInput<bool>();
+
+            if (GetUserByString(_user.Username) != null) _output.Status = "@UsernameTaken";
             _context.Users.Add(
                 new AppUser
                 {
@@ -41,7 +48,24 @@ namespace ImpetusApi.Controllers
                     MatchHistory = null
                 });
             await _context.SaveChangesAsync();
-            return "@SuccessfulRegister";
+            _output.Status = "@SuccessfulRegister";
+            _output.Output = true;
+
+            return _output;
+        }
+
+
+        [HttpPost("getuser")]
+        public BaseInput<AppUserOutput> GetUser(string _user)
+        {
+            BaseInput<AppUserOutput> _output = new BaseInput<AppUserOutput>();
+            AppUser _newuser = GetUserByString(_user);
+
+            if (_newuser == null) _output.Status = "@UserNotFound";
+            _output.Output = new AppUserOutput( _newuser);
+            _output.Status = "@UserFound";
+
+            return _output;
         }
 
     }
