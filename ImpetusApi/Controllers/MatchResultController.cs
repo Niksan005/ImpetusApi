@@ -19,6 +19,8 @@ namespace ImpetusApi.Controllers
         [HttpPost("result")]
         public async Task<bool> MatchResult(ICollection<string> players)
         {
+            PointsChanges(players);
+
             _context.Matchs.Add(new Match());
             var _match = _context.Matchs.Last();
             foreach (string player in players)
@@ -39,6 +41,22 @@ namespace ImpetusApi.Controllers
             return true;
         }
 
+        private void PointsChanges(ICollection<string> players)
+        {
+            AppUser player1 = GetUserByString(players.First());
+            player1.Points += players.Count() + 1;
+            UpdateLeaderBoard(player1);
+            foreach (string player in players)
+            {
+                GetUserByString(player).Points -= 1;
+            }
+
+        }
+
+        private void UpdateLeaderBoard(AppUser player)
+        {
+            _context.Leaderboards.Where(x => x.Name.Equals(player.Username)).FirstOrDefault().Points = player.Points;
+        }
 
         [HttpPost("getmatch")]
         public Match GetMatch(string _id)

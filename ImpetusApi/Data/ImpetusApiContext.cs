@@ -15,6 +15,8 @@ namespace ImpetusApi.Data
         public DbSet<AppUser> Users { get; set; }
         public DbSet<Match> Matchs { get; set; }
         public DbSet<UserMatchRelation> UserMatchRelations { get; set; }
+        public DbSet<Leaderboard> Leaderboards { get; set; }
+
 
 
         protected override void OnModelCreating(ModelBuilder builder)
