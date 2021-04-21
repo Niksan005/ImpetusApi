@@ -25,11 +25,21 @@ namespace ImpetusApi.Controllers
             BaseInput<bool> _output = new BaseInput<bool>();
 
             AppUser _newuser = GetUserByString(_user.Username);
-            if (_newuser == null) _output.Status = "@UserNotFound";
-            if (_newuser.Password == _user.Password) _output.Status = "@SuccessfulLogin";
-            _output.Status = "@WrongPassword";
-            _output.Output = true;
+            if (_newuser == null)
+            {
+                _output.Status = "@UserNotFound";
+                return _output;
+            }
+            if (_newuser.Password == _user.Password)
+            {
+                _output.Status = "@SuccessfulLogin";
+            }
+            else
+            {
+                _output.Status = "@WrongPassword";
+            }
 
+            _output.Output = true;
             return _output;
         }
 
@@ -62,7 +72,7 @@ namespace ImpetusApi.Controllers
             AppUser _newuser = GetUserByString(_user);
 
             if (_newuser == null) _output.Status = "@UserNotFound";
-            _output.Output = new AppUserOutput( _newuser);
+            _output.Output = new AppUserOutput(_newuser);
             _output.Status = "@UserFound";
 
             return _output;

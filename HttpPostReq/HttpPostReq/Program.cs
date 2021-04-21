@@ -19,7 +19,7 @@ namespace HttpPostReq
             var json = JsonConvert.SerializeObject(log);
             var data = new StringContent(json, Encoding.UTF8, "application/json");
 
-            var url = "https://impetusapi.kutiika.net/api/user/login";
+            var url = "https://localhost:5001/api/user/login";
             using var client = new HttpClient();
 
 
@@ -28,6 +28,5 @@ namespace HttpPostReq
             string result = response.Content.ReadAsStringAsync().Result;
             Console.WriteLine(result);
         }
-
     }
 }
